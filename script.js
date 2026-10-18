@@ -39,10 +39,17 @@ function initMobileNav() {
   });
 
   // Close menu when clicking any nav link
-  mainNav.querySelectorAll('.nav-link').forEach(link => {
+  mainNav.querySelectorAll('.nav-link, .mobile-nav-actions a').forEach(link => {
     link.addEventListener('click', () => {
       toggleMenu(false);
     });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (mainNav.classList.contains('open') && !mainNav.contains(e.target) && !toggleBtn.contains(e.target)) {
+      toggleMenu(false);
+    }
   });
 
   // Close on Escape key
